@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+                    
+                    <h:outputLabel value="Empname:" for="empname" />
+                    <h:inputText id="empname" value="#{employeeBean.empname}" title="Empname" required="true" requiredMessage="The Empname field is required."/>
+                    <h:outputLabel value="Gender:" for="gender" />
+                    <h:selectOneRadio value="#{employeeBean.gender}">
+                        <f:selectItem itemValue="Male" itemLabel="Male"/>
+                        <f:selectItem itemValue="FeMale" itemLabel="FeMale"/>
+                    </h:selectOneRadio>
+                    <h:outputLabel value="Email:" for="email" />
+                    <h:inputText id="email" value="#{employeeBean.email}" title="Email" required="true" requiredMessage="The Email field is required."/>
+                    <h:outputLabel value="Deptid:" for="deptid" />
+                    <h:selectOneMenu id="deptid" value="#{employeeBean.deptid}"  title="Deptid" required="true" requiredMessage="The Deptid field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{employeeBean.deptlist}" var="dept" itemValue="#{dept.deptid}" itemLabel="#{dept.deptname}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <c:if test="#{employeeBean.empid==0}">
+                <h:commandButton value="Insert" id="btnins" action="#{employeeBean.addemp()}" />
+                </c:if>
+                <c:if test="#{employeeBean.empid!=0}">
+                    <h:commandButton value="Update" id="btnupdate" action="#{employeeBean.updatemp()}" />
+                </c:if>
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+

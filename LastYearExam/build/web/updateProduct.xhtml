@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Quantity:" for="quantity" />
+                    <h:inputText id="quantity" value="#{productJSFManagedBean.qty}" title="Quantity" required="true" requiredMessage="The Quantity field is required."/>
+                    <h:outputLabel value="Price:" for="price" />
+                    <h:inputText id="price" value="#{productJSFManagedBean.price}" title="Price" required="true" requiredMessage="The Price field is required."/>
+                    <h:outputLabel value="ProductName:" for="productName" />
+                    <h:inputText id="productName" value="#{productJSFManagedBean.pname}" title="ProductName" required="true" requiredMessage="The ProductName field is required."/>
+                    <h:outputLabel value="CategoryId:" for="categoryId" />
+                    <h:selectOneMenu id="categoryId" value="#{productJSFManagedBean.cid}" title="CategoryId" required="true" requiredMessage="The CategoryId field is required.">
+                         
+                        <f:selectItems value="#{productJSFManagedBean.getCategoryData()}" var="c" itemLabel="#{c.categoryName}" itemValue="#{c.id}"  />
+                    </h:selectOneMenu>
+                    <h:outputLabel value="BrandId:" for="brandId" />
+                    <h:selectOneMenu id="brandId" value="#{productJSFManagedBean.bid}" title="BrandId" required="true" requiredMessage="The BrandId field is required.">
+                         
+                        <f:selectItems value="#{productJSFManagedBean.getBrandData()}" var="b" itemLabel="#{b.brandName}" itemValue="#{b.id}"/>
+                    </h:selectOneMenu>
+                    <h:commandButton value="Save" action="#{productJSFManagedBean.editProductData()}"></h:commandButton>
+                </h:panelGrid>
+            </h:form>
+    </h:body>
+</html>
+
